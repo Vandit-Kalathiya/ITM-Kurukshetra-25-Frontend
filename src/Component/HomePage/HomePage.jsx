@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import ProduceList from "../../assets/process1.jpeg";
 import ConnectWith from "../../assets/process2.jpeg";
 import SecurePayment from "../../assets/process3.jpeg";
-import { getTokenFromCookie } from "../../helper";
+import { getTokenFromCookie } from "../../../helper";
 
 const HomePage = () => {
   const [isScrolled, setIsScrolled] = useState(false);

@@ -3,6 +3,7 @@ import OtpVerification from "./OtpVerfication";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
+import { useState } from "react";
 
 const SignUp = ({ navigateToLogin }) => {
   const [username, setUsername] = useState("");
