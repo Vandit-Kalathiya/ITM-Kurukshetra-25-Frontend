@@ -8,7 +8,41 @@ const CropCard = ({ crop }) => {
   const [error, setError] = useState(null);
   const [images, setImages] = useState([]);
 
+  // Log the crop object to verify its structure
+  // console.log("Crop Data:", crop);
+
   console.log(crop.lastUpdatedDate);
+  
+
+  useEffect(() => {
+    fetchImages();
+  }, []);
+
+  const fetchImages = async () => {
+    try {
+      setLoading(true);
+      const imagePromises = crop.images.map((image) => {
+        const imageUrl = `http://localhost:2527/image/${image.id}`;
+        return axios
+          .get(imageUrl, {
+            withCredentials: true,
+            responseType: "blob",
+          })
+          .then((res) => {
+            const url = URL.createObjectURL(res.data);
+            return url;
+          });
+      });
+
+      const imageUrls = await Promise.all(imagePromises);
+      setImages(imageUrls);
+    } catch (err) {
+      setError("Failed to load images");
+      console.error(err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   // Cleanup Blob URLs to prevent memory leaks
   useEffect(() => {

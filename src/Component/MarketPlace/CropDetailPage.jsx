@@ -21,9 +21,131 @@ import { getCurrentUser } from "../../../helper";
 
 export const CropDetailPage = () => {
   const navigate = useNavigate();
+  const { id } = useParams();
+  const location = useLocation();
+
+  const [cropData, setCropData] = useState(null);
+  const [images, setImages] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [isWishlisted, setIsWishlisted] = useState(false);
+  const [userPhone, setUserPhone] = useState(null);
+
+  // Check if data was passed via state (from CropCard)
+  const { cropData: initialCropData, images: initialImages } =
+    location.state || {};
+
+  const fetchUserProfile = async () => {
+    try {
+      const response = await getCurrentUser();
+      console.log(response);
+      if (response && response.phoneNumber) {
+        setUserPhone(response.phoneNumber);
+      }
+    } catch (err) {
+      console.error("Failed to fetch user profile:", err);
+    }
+  };
+  
+  useEffect(() => {
+    fetchUserProfile();
+    fetchCropData();
+    // Simulate checking if item is in wishlist
+    setIsWishlisted(Math.random() > 0.7);
+
+    return () => {
+      images.forEach((url) => URL.revokeObjectURL(url));
+    };
+  }, [id]);
+
+  const fetchCropData = async () => {
+    try {
+      setLoading(true);
+
+      // Fetch from backend
+      const response = await axios.get(
+        `http://localhost:2527/listings/get/${id}`,
+        {
+          withCredentials: true,
+        }
+      );
+
+      const listing = response.data;
+      
+
+      // Map backend fields to frontend structure
+      const mappedCropData = {
+        id: listing.id,
+        images: listing.images, // Array of image objects with id
+        type: listing.productType,
+        variety: listing.productName,
+        grade: listing.qualityGrade,
+        certifications: listing.certifications
+          ? listing.certifications.split(", ")
+          : [],
+        quantity: listing.quantity,
+        unit: listing.unitOfQuantity,
+        location: listing.location,
+        harvestDate: listing.harvestedDate,
+        availabilityDate: listing.availabilityDate,
+        shelfLife: listing.shelfLifetime,
+        price: `₹${listing.finalPrice.toFixed(2)}`,
+        priceUnit: `per ${listing.unitOfQuantity}`,
+        description: listing.productDescription,
+        contact: listing.contactOfFarmer,
+        rating: 4.5, // Hardcoded; fetch from backend if available
+        farmName: listing.farmName || "Organic Farm",
+        farmerName: listing.farmerName || "Local Farmer",
+        isOrganic: listing.isOrganic || false,
+        isSustainable: listing.isSustainable || true,
+        status: listing.status || "active", // Ensure status is included
+      };
+
+      setCropData(mappedCropData);
+
+      // Fetch images
+      const imagePromises = listing.images.map((image) =>
+        axios
+          .get(`http://localhost:2527/image/${image.id}`, {
+            withCredentials: true,
+            responseType: "blob",
+          })
+          .then((res) => URL.createObjectURL(res.data))
+      );
+
+      const imageUrls = await Promise.all(imagePromises);
+      setImages(imageUrls);
+    } catch (err) {
+      setError(
+        `Failed to fetch crop data: ${err.response?.data || err.message}`
+      );
+      toast.error("Failed to load crop details");
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const handleGoBack = () => {
     navigate(-1);
+  };
+
+  const handleToggleWishlist = () => {
+    setIsWishlisted(!isWishlisted);
+    toast.success(
+      isWishlisted ? "Removed from wishlist" : "Added to wishlist",
+      {
+        icon: isWishlisted ? (
+          <X size={18} />
+        ) : (
+          <Heart size={18} className="text-red-500 fill-red-500" />
+        ),
+        style: {
+          borderRadius: "10px",
+          background: "#333",
+          color: "#fff",
+        },
+      }
+    );
   };
 
   const handleShare = () => {

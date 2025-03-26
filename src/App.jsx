@@ -11,7 +11,8 @@ import Navbar from "./Component/Navbar/Navbar";
 import Sidebar from "./Component/Dashboard/Sidebar";
 import Dashboard from "./Component/Dashboard/Dashboard";
 import CropListingPage from "./Component/MarketPlace/CropListingPage";
-import {CropDetailPage} from "./Component/MarketPlace/CropDetailPage";
+import { CropDetailPage } from "./Component/MarketPlace/CropDetailPage";
+import ColdStoragePage from "./Component/ColdStorage/ColdStorage";
 
 function App() {
   const PrivateRoute = ({ children }) => {
@@ -45,6 +46,10 @@ function App() {
                       <Route path="/list-product" element={<ListingForm />} />
                       <Route path="/crops" element={<CropListingPage />} />
                       <Route path="/crop/:id" element={<CropDetailPage />} />
+                      <Route
+                        path="/cold-storage"
+                        element={<ColdStoragePage />}
+                      />
                     </Routes>
                   </main>
                 </div>
