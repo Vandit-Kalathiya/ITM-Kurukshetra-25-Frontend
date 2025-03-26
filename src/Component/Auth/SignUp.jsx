@@ -1,5 +1,5 @@
 import React from "react";
-import OtpVerification from "./OtpVerification";
+import OtpVerification from "./OtpVerfication";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
