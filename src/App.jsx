@@ -4,6 +4,7 @@ import { Route, Routes, Navigate } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { getUsernameFromToken } from "./helper";
 import Index from "./Component/CropAdvisoryBot/Index";
+import AuthPage from './Component/Auth/AuthPage'
 
 function App() {
   const PrivateRoute = ({ children }) => {
@@ -19,7 +20,20 @@ function App() {
     <MantineProvider>
       <ToastContainer />
       <Routes>
-        <Route path="/" element={<Index />} />
+        <Route
+          path="/auth"
+          element={
+            <PublicRoute>
+              <AuthPage />
+            </PublicRoute>
+          }
+        />
+        <Route
+          path="/"
+          element={
+            <HomePage />
+          }
+        />
       </Routes>
     </MantineProvider>
   );
