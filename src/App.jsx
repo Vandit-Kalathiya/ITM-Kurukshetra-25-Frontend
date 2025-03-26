@@ -15,6 +15,8 @@ import {CropDetailPage} from "./Component/MarketPlace/CropDetailPage";
 import WeatherDashboard from "./Component/Weather/WeatherDashboard";
 import ColdStoragePage from "./Component/ColdStorage/ColdStorage";
 import MyListing from "./Component/MyProducts/MyListing";
+import MyOrders from "./Component/MyOrders/MyOrders";
+import Contracts from "./Component/MyContracts/MyContracts";
 
 function App() {
   const PrivateRoute = ({ children }) => {
@@ -54,6 +56,8 @@ function App() {
                         element={<ColdStoragePage />}
                       />
                       <Route path="/my-listing" element={ <MyListing /> } />
+                      <Route path="/my-orders" element={<MyOrders />} />
+                      <Route path="/my-contracts" element={<Contracts />} />
                     </Routes>
                   </main>
                 </div>
