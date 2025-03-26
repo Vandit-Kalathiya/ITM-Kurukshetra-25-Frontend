@@ -17,6 +17,7 @@ import ColdStoragePage from "./Component/ColdStorage/ColdStorage";
 import MyListing from "./Component/MyProducts/MyListing";
 import MyOrders from "./Component/MyOrders/MyOrders";
 import Contracts from "./Component/MyContracts/MyContracts";
+import Payments from "./Component/Payments/Payments";
 
 function App() {
   const PrivateRoute = ({ children }) => {
@@ -58,6 +59,7 @@ function App() {
                       <Route path="/my-listing" element={ <MyListing /> } />
                       <Route path="/my-orders" element={<MyOrders />} />
                       <Route path="/my-contracts" element={<Contracts />} />
+                      <Route path="/my-payments" element={<Payments />} />
                     </Routes>
                   </main>
                 </div>
