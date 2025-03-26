@@ -12,6 +12,7 @@ import Sidebar from "./Component/Dashboard/Sidebar";
 import Dashboard from "./Component/Dashboard/Dashboard";
 import CropListingPage from "./Component/MarketPlace/CropListingPage";
 import {CropDetailPage} from "./Component/MarketPlace/CropDetailPage";
+import WeatherDashboard from "./Component/Weather/WeatherDashboard";
 
 function App() {
   const PrivateRoute = ({ children }) => {
@@ -45,6 +46,7 @@ function App() {
                       <Route path="/list-product" element={<ListingForm />} />
                       <Route path="/crops" element={<CropListingPage />} />
                       <Route path="/crop/:id" element={<CropDetailPage />} />
+                      <Route path="/weather" element={<WeatherDashboard />} />
                     </Routes>
                   </main>
                 </div>
