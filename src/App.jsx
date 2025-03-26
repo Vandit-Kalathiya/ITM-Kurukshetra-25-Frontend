@@ -22,9 +22,24 @@ function App() {
     <MantineProvider>
       <ToastContainer />
       <Routes>
-        <Route path="/" element={<HomePage />} />
-        <Route path="/auth" element={<AuthPage />} />
-        <Route path="/crop-advisory" element={<Index />} />
+        <Route
+          path="/"
+          element={
+            <HomePage />
+          }
+        />
+        <Route
+          path="/auth"
+          element={
+              <AuthPage />
+          }
+        />
+        <Route
+          path="/crop-advisory"
+          element={
+              <Index />
+          }
+        />
       </Routes>
     </MantineProvider>
   );
