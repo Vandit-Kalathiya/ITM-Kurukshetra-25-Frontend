@@ -66,7 +66,7 @@ const Sidebar = () => {
           <SidebarItem
             icon={<IoMdAdd />}
             text="List Product"
-            to="/list"
+            to="/list-product"
             isCollapsed={isCollapsed}
             toggleSidebar={toggleSidebar}
           />
@@ -153,8 +153,8 @@ const SidebarItem = ({ icon, text, to, isCollapsed, toggleSidebar }) => {
         className={({ isActive }) =>
           `flex items-center gap-3 px-4 py-3 transition-colors duration-200 ${
             isActive
-              ? "bg-jewel-500 text-white rounded-lg"
-              : "text-gray-800 hover:bg-jewel-700 hover:text-white rounded-lg"
+              ? "bg-green-700 text-white rounded-lg"
+              : "text-gray-800 hover:bg-green-700 hover:text-white rounded-lg"
           } ${isCollapsed ? "justify-center" : ""}`
         }
       >

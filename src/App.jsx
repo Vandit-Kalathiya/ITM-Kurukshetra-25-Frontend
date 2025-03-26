@@ -10,6 +10,8 @@ import ListingForm from "./Component/ListProductForm/ListingForm";
 import Navbar from "./Component/Navbar/Navbar";
 import Sidebar from "./Component/Dashboard/Sidebar";
 import Dashboard from "./Component/Dashboard/Dashboard";
+import CropListingPage from "./Component/MarketPlace/CropListingPage";
+import {CropDetailPage} from "./Component/MarketPlace/CropDetailPage";
 
 function App() {
   const PrivateRoute = ({ children }) => {
@@ -28,11 +30,6 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="/auth" element={<AuthPage />} />
-        <Route path="/crop-advisory" element={<Index />} />
-        <Route path="/list-product" element={<ListingForm />} />
-        <Route path="/" element={<HomePage />} />
-        <Route path="/auth" element={<AuthPage />} />
-        <Route path="/crop-advisory" element={<Index />} />
         <Route
           path="*"
           element={
@@ -44,6 +41,10 @@ function App() {
                   <main className="flex-1 ml-16 md:ml-0">
                     <Routes>
                       <Route path="/dashboard" element={<Dashboard />} />
+                      <Route path="/crop-advisory" element={<Index />} />
+                      <Route path="/list-product" element={<ListingForm />} />
+                      <Route path="/crops" element={<CropListingPage />} />
+                      <Route path="/crop/:id" element={<CropDetailPage />} />
                     </Routes>
                   </main>
                 </div>
