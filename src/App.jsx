@@ -6,6 +6,7 @@ import { getUsernameFromToken } from "../helper";
 import Index from "./Component/CropAdvisoryBot/Index";
 import HomePage from "./Component/HomePage/HomePage";
 import AuthPage from "./Component/Auth/AuthPage";
+import ListingForm from "./Component/ListProductForm/ListingForm";
 import Navbar from "./Component/Navbar/Navbar";
 import Sidebar from "./Component/Dashboard/Sidebar";
 import Dashboard from "./Component/Dashboard/Dashboard";
@@ -25,6 +26,10 @@ function App() {
     <MantineProvider>
       <ToastContainer />
       <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/auth" element={<AuthPage />} />
+        <Route path="/crop-advisory" element={<Index />} />
+        <Route path="/list-product" element={<ListingForm />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/auth" element={<AuthPage />} />
         <Route path="/crop-advisory" element={<Index />} />
