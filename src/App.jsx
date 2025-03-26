@@ -6,6 +6,7 @@ import { getUsernameFromToken } from "./helper";
 import Index from "./Component/CropAdvisoryBot/Index";
 import HomePage from "./Component/HomePage/HomePage";
 import AuthPage from "./Component/Auth/AuthPage";
+import ListingForm from "./Component/ListProductForm/ListingForm";
 
 function App() {
   const PrivateRoute = ({ children }) => {
@@ -22,24 +23,10 @@ function App() {
     <MantineProvider>
       <ToastContainer />
       <Routes>
-        <Route
-          path="/"
-          element={
-            <HomePage />
-          }
-        />
-        <Route
-          path="/auth"
-          element={
-              <AuthPage />
-          }
-        />
-        <Route
-          path="/crop-advisory"
-          element={
-              <Index />
-          }
-        />
+        <Route path="/" element={<HomePage />} />
+        <Route path="/auth" element={<AuthPage />} />
+        <Route path="/crop-advisory" element={<Index />} />
+        <Route path="/list-product" element={<ListingForm />} />
       </Routes>
     </MantineProvider>
   );
