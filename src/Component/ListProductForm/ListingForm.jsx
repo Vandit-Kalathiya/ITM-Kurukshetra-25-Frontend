@@ -4,6 +4,7 @@ import Step1 from "./Step1";
 import Step2 from "./Step2";
 import Step3 from "./Step3";
 import Step4 from "./Step4";
+import { getCurrentUser } from "../../helper";
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
@@ -37,6 +38,25 @@ const ListingForm = () => {
   const navigate = useNavigate();
 
   const MAX_PHOTOS = 5;
+
+  const fetchUser = async () => {
+    try {
+      const user = await getCurrentUser();
+      setUser(user);
+
+      setFormData((prevFormData) => ({
+        ...prevFormData,
+        location: user.address || "", 
+        contactInfo: user.phoneNumber || "", 
+      }));
+    } catch (err) {
+      console.log("User not found");
+    }
+  };
+
+  useEffect(() => {
+    fetchUser();
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -241,6 +261,20 @@ const ListingForm = () => {
     }
   };
 
+  const fetchListingById = async (listingId) => {
+    try {
+      const response = await axios.get(
+        `${BASE_URL}/listings/get/${listingId}`,
+        {
+          withCredentials: true, // If your API requires authentication
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching listing:", error);
+      throw error.response?.data || error.message;
+    }
+  };
 
   useEffect(() => {
     const fetchAiPrice = async () => {

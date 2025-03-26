@@ -95,7 +95,6 @@ const LocationSelector = ({ onLocationSelect }) => {
   return (
     <Card className="overflow-hidden border-0 shadow-xl bg-white/95 backdrop-blur-xl rounded-xl">
       <CardContent className="p-0">
-        {/* Header */}
         <div className="bg-gradient-to-r from-emerald-500 to-green-600 p-5 text-white">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -133,7 +132,6 @@ const LocationSelector = ({ onLocationSelect }) => {
           </div>
         </div>
 
-        {/* Content */}
         <div className="p-6 space-y-6">
           {searchMode === "dropdown" ? (
             <div className="space-y-5">

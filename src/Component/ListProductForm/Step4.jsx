@@ -92,7 +92,6 @@ const Step4 = ({ formData, handleBack, handleSubmit }) => {
                 </div>
               </div>
 
-              {/* Storage Conditions */}
               <div className="flex items-start">
                 <div className="w-8 h-8 bg-jewel-100 rounded-full flex items-center justify-center mr-3">
                   <FaWarehouse className="text-jewel-600" />

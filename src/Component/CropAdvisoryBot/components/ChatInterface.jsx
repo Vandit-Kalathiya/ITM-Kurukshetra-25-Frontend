@@ -99,7 +99,7 @@ const ChatInterface = ({ selectedLocation, onRecommendationsReceived }) => {
     const newMessage = {
       id: Date.now().toString(),
       sender: "bot",
-      text: `Analyzing agricultural conditions and market trends for ${location.district}, ${location.state} using Gemini AI...`,
+      text: `Analyzing agricultural conditions and market trends for ${location.district}, ${location.state}`,
       timestamp: new Date(),
     };
     setMessages((prev) => [...prev, newMessage]);
@@ -206,7 +206,6 @@ These recommendations consider current market prices, projected demand, and grow
     <Card className="flex flex-col h-[550px] overflow-hidden border border-green-100 shadow-lg bg-gradient-to-b from-green-50 to-white rounded-xl">
       <CardHeader className="p-4 pb-2 flex flex-row items-center justify-between border-b border-green-100 bg-gradient-to-r from-green-100 to-green-50">
         <div className="flex items-center gap-3">
-          {/* Improved Logo */}
           <div className="h-10 w-10 bg-green-500 rounded-full ring-2 ring-green-200 shadow-sm flex items-center justify-center">
             <LeafIcon className="h-5 w-5 text-white" />
           </div>
@@ -278,7 +277,6 @@ These recommendations consider current market prices, projected demand, and grow
               >
                 {message.sender === "bot" && (
                   <div className="flex items-center gap-2 mb-2">
-                    {/* Improved Bot Avatar */}
                     <div className="h-6 w-6 bg-green-100 rounded-full flex items-center justify-center">
                       <LeafIcon className="h-3 w-3 text-green-700" />
                     </div>
@@ -336,7 +334,6 @@ These recommendations consider current market prices, projected demand, and grow
       )}
 
       <CardFooter className="p-4 pt-2 border-t border-green-100 bg-green-50 flex flex-col gap-3">
-        {/* Feature indicators moved above the input field */}
         {geminiApiKey && (
           <div className="w-full flex items-center justify-between mb-2 bg-white/50 rounded-lg py-2 px-4">
             <div className="flex items-center gap-2 text-xs text-green-600 transition-colors hover:text-green-800 cursor-pointer">
@@ -356,7 +353,6 @@ These recommendations consider current market prices, projected demand, and grow
           </div>
         )}
 
-        {/* Input form */}
         <form onSubmit={handleSubmit} className="flex gap-2 w-full">
           <div className="flex-1 relative rounded-full overflow-hidden">
             <Input
@@ -364,7 +360,7 @@ These recommendations consider current market prices, projected demand, and grow
               placeholder="Ask about crop recommendations, market trends, or farming tips..."
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              className="pr-24 pl-4 py-6 border-green-700 focus:border-green-400 shadow-sm bg-white placeholder:text-green-300 h-12 rounded-full"
+              className="pr-24 pl-4 py-6 border-green-700 focus:border-green-400 shadow-sm bg-white placeholder:text-green-500 h-12 rounded-full"
               disabled={isLoading || !geminiApiKey}
             />
             <TooltipProvider>

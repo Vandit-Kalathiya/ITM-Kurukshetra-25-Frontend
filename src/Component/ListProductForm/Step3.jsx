@@ -137,9 +137,7 @@ const Step3 = ({
       </h2>
 
       <div className="grid md:grid-cols-2 gap-6">
-        {/* Left Column */}
         <div className="space-y-6">
-          {/* Location Card */}
           <div className="bg-white p-5 rounded-lg shadow-sm transition-all hover:shadow-md">
             <label className="flex items-center gap-2 text-sm font-semibold text-jewel-600 mb-2">
               <FaMapMarkerAlt className="text-jewel-500" />
@@ -363,14 +361,14 @@ const Step3 = ({
           <div className="flex justify-between pt-4">
             <button
               onClick={handleBack}
-              className="px-4 py-2 rounded-lg border border-jewel-300 bg-white text-jewel-700 hover:bg-jewel-50 transition-colors"
+              className="px-6 py-3 rounded-lg border border-jewel-300 bg-white text-jewel-700 hover:bg-jewel-50 transition-colors"
             >
               Back
             </button>
             <button
               onClick={handleNext}
               disabled={!isStep3Valid}
-              className={`px-4 py-2 rounded-lg text-white font-medium ${
+              className={`px-6 py-3 rounded-lg text-white font-medium ${
                 isStep3Valid
                   ? "bg-gradient-to-r from-jewel-500 to-jewel-600 hover:from-jewel-600 hover:to-jewel-700"
                   : "bg-gray-400 cursor-not-allowed"
@@ -384,6 +382,7 @@ const Step3 = ({
 
       {(recommendations.length > 0 || nearbyFarmers.length > 0) && (
         <div className="mt-8 space-y-6">
+          {/* Recommendations */}
           {recommendations.length > 0 && (
             <div className="bg-white p-5 rounded-lg shadow-sm transition-all hover:shadow-md">
               <h3 className="text-lg font-semibold text-jewel-700 flex items-center gap-2 mb-3">

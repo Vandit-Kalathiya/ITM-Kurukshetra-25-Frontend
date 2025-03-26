@@ -34,6 +34,44 @@ const Step2 = ({
     !isNaN(formData.shelfLife) &&
     Number(formData.shelfLife) > 0;
 
+  const predictShelfLife = async (cropType) => {
+    if (!cropType) {
+      toast.error("Please select a crop type first");
+      return;
+    }
+
+    setIsLoadingShelfLife(true);
+
+    const productName = formData.productName || "product"; 
+    const prompt = `Predict the average shelf life in days for ${productName}, which is a ${cropType}. Return only a number value.`;
+
+    try {
+      const result = await model.generateContent(prompt);
+
+      const responseText = result.response.text();
+      console.log("Gemini response:", responseText);
+
+      const matches = responseText.match(/\d+/);
+      if (matches) {
+        const shelfLifeDays = matches[0];
+
+        handleInputChange({
+          target: { name: "shelfLife", value: shelfLifeDays },
+        });
+
+        toast.success(`Shelf life predicted: ${shelfLifeDays} days`);
+      } else {
+        console.error("No valid number found in the response:", responseText);
+        toast.error("Failed to predict shelf life. Please try again.");
+      }
+    } catch (error) {
+      console.error("Error predicting shelf life:", error);
+      toast.error("Error predicting shelf life. Please try again.");
+    } finally {
+      setIsLoadingShelfLife(false);
+    }
+  };
+
   const validateHarvestDate = (date) => {
     if (!date) return;
 
@@ -82,9 +120,9 @@ const Step2 = ({
     const { value } = e.target;
     handleInputChange(e);
 
-    // if (value && value !== "") {
-    //   predictShelfLife(value);
-    // }
+    if (value && value !== "") {
+      predictShelfLife(value);
+    }
   };
 
   useEffect(() => {
@@ -339,7 +377,7 @@ const Step2 = ({
       <div className="flex justify-between pt-4 border-t border-gray-200">
         <button
           onClick={handleBack}
-          className="px-4 py-2 rounded-lg border border-jewel-300 bg-white text-jewel-700 hover:bg-jewel-50 transition-colors shadow-sm"
+          className="px-4 py-3 rounded-lg border border-jewel-300 bg-white text-jewel-700 hover:bg-jewel-50 transition-colors shadow-sm"
         >
           Back
         </button>

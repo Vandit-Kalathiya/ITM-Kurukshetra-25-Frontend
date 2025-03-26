@@ -166,26 +166,24 @@ const Index = () => {
                 >
                   <div className="flex gap-4 mb-6">
                     <Button
-                      variant={activeTab === "chat" ? "default" : "outline"}
                       size="lg"
                       onClick={() => setActiveTab("chat")}
                       className={`flex items-center gap-2 rounded-full px-5 py-6 transition-all duration-300 ${
                         activeTab === "chat"
-                          ? "bg-jewel-500 hover:bg-jewel-600 text-white shadow-md"
-                          : "hover:bg-jewel-500/10 hover:text-jewel-700"
+                          ? "shadow-xl border border-green-500"
+                          : ""
                       }`}
                     >
                       <MessageSquare className="h-5 w-5" />
                       Chat Advisor
                     </Button>
                     <Button
-                      variant={activeTab === "tips" ? "default" : "outline"}
                       size="lg"
                       onClick={() => setActiveTab("tips")}
                       className={`flex items-center gap-2 rounded-full px-5 py-6 transition-all duration-300 ${
                         activeTab === "tips"
-                          ? "bg-jewel-500 hover:bg-jewel-600 text-white shadow-md"
-                          : "hover:bg-jewel-500/10 hover:text-jewel-700"
+                          ? "shadow-xl border border-green-500"
+                          : ""
                       }`}
                     >
                       <Sun className="h-5 w-5" />
