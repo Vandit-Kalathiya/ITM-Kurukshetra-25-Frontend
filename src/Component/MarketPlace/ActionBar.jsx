@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { ShoppingCart, Phone, AlertTriangle, Check, X } from "lucide-react";
 import { toast } from "react-hot-toast";
 import TermsAndConditionsModal from "./TermsAndConditionsModal";
-// import CropContractAgreement from "../CropContractAgreement/CropContractAgreement";
+import CropContractAgreement from "../CropContractAgreement/CropContractAgreement";
 
 const ActionBar = ({ crop, userPhone }) => {
   const [quantity, setQuantity] = useState(1);
@@ -182,7 +182,7 @@ const ActionBar = ({ crop, userPhone }) => {
                 </svg>
               </button>
             </div>
-            {/* <CropContractAgreement /> */}
+            <CropContractAgreement />
           </div>
         </div>
       )}
