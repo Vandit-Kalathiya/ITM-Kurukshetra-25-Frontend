@@ -164,19 +164,40 @@ const MyOrders = () => {
     }
   });
 
-  const handleFarmerAction = async (pdfHash, newStatus, trackingNumber) => {
+  const handleFarmerAction = async (orderId, newStatus, deliveryData) => {
+    // console.log(trackingNumber2,' ',newStatus);
+
     setIsProcessingPayment(true);
     try {
       if (newStatus === "delivered") {
         await axios.post(
-          `http://localhost:2526/api/payments/confirm-delivery/${pdfHash}/${trackingNumber}`,
-          { trackingNumber },
+          `http://localhost:2526/api/payments/confirm-delivery/${orderId}/${deliveryData.trackingNumber}`,
+          {},
           { withCredentials: true }
         );
+
+        // const updateListingStatus = await axios.put(
+        //   `http://localhost:2527/listings/${listingId}/archived`
+        // );
+        // if (!updateListingStatus.status === 200) {
+        //   const errorText = await updateListingStatus.text();
+        //   toast.error(
+        //     `Failed to update listing status: ${updateListingStatus.status} - ${errorText}`
+        //   );
+        //   throw new Error(
+        //     `Failed to update listing status: ${updateListingStatus.status} - ${errorText}`
+        //   );
+        // }
+
+        // console.log(
+        //   "Listing status updated successfully:",
+        //   updateListingStatus.data
+        // );
+
         toast.success("Delivery confirmed successfully!");
       } else if (newStatus === "return_confirmed") {
         await axios.post(
-          `http://localhost:2526/api/payments/confirm-return/${pdfHash}`,
+          `http://localhost:2526/api/payments/confirm-return/${orderId}`,
           {},
           { withCredentials: true }
         );
@@ -194,11 +215,11 @@ const MyOrders = () => {
     }
   };
 
-  const handleBuyerRefund = async (pdfHash) => {
+  const handleBuyerRefund = async (orderId) => {
     setIsProcessingPayment(true);
     try {
       await axios.post(
-        `http://localhost:2526/api/payments/reject-delivery/${pdfHash}`,
+        `http://localhost:2526/api/payments/reject-delivery/${orderId}`,
         {},
         { withCredentials: true }
       );
@@ -249,9 +270,9 @@ const MyOrders = () => {
         return;
       }
 
-      console.log(order.pdfHash);
+      console.log(order.id);
       const finalRes = await axios.post(
-        `http://localhost:2526/api/payments/request-return/${order.pdfHash}/abcd`,
+        `http://localhost:2526/api/payments/request-return/${order.id}/abcd`,
         { withCredentials: true }
       );
       const res = finalRes.data;
@@ -324,6 +345,7 @@ const MyOrders = () => {
               inProgressCount={inProgressCount}
               completedCount={completedCount}
               handleFarmerAction={handleFarmerAction}
+              fetchOrders={fetchOrders}
             />
           </>
         )}
