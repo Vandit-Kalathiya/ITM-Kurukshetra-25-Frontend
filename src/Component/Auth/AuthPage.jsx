@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import Login from './Login'
-import SignUp from './SignUp'
 import leafImg from '../../assets/leaf.png'
 import { useLocation } from 'react-router-dom'
+import SignUp from './SignUp'
+import Login from './Login'
 
 const AuthPage = () => {
     const [currentPage, setCurrentPage] = useState('login');
@@ -14,7 +14,6 @@ const AuthPage = () => {
 
     const navigateToLogin = () => {
         setCurrentPage('login');
-
     }
 
     useEffect(()=>{
