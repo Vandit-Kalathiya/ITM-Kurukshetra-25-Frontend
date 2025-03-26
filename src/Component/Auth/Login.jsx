@@ -1,7 +1,8 @@
 import React from 'react'
 import OtpVerfication from './OtpVerfication'
 import axios from 'axios';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, } from 'react-router-dom';
+import { useState } from 'react';
 
 
 const Login = ({navigateToSignUp}) => {
