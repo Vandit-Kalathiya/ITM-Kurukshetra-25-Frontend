@@ -13,8 +13,8 @@ import Dashboard from "./Component/Dashboard/Dashboard";
 import CropListingPage from "./Component/MarketPlace/CropListingPage";
 import {CropDetailPage} from "./Component/MarketPlace/CropDetailPage";
 import WeatherDashboard from "./Component/Weather/WeatherDashboard";
-import { CropDetailPage } from "./Component/MarketPlace/CropDetailPage";
 import ColdStoragePage from "./Component/ColdStorage/ColdStorage";
+import MyListing from "./Component/MyProducts/MyListing";
 
 function App() {
   const PrivateRoute = ({ children }) => {
@@ -53,6 +53,7 @@ function App() {
                         path="/cold-storage"
                         element={<ColdStoragePage />}
                       />
+                      <Route path="/my-listing" element={ <MyListing /> } />
                     </Routes>
                   </main>
                 </div>
