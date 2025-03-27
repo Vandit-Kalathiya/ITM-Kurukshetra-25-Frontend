@@ -8,6 +8,8 @@ import PriceSuggestions from "./PriceSuggestions";
 import CropAdvisory from "./CropAdvisory";
 import DemandAnalytics from "./DemandAnalytics";
 import AlertsPanel from "./AlertsPanel";
+import TrendingCrops from "../MarketTrends/components/TrendingCrops";
+import CurrentMonthHighlights from "../MarketTrends/components/CurrentMonthHighlights";
 
 const Dashboard = () => {
   return (
@@ -19,58 +21,47 @@ const Dashboard = () => {
       </div>
 
       {/* Stats Section */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 mb-6 md:mb-8">
-        <StatCard
-          title="Total Crops Sold"
-          value="1,230"
-          icon="🌾"
-          trend="+12%"
-          trendUp
-        />
-        <StatCard
-          title="Market Revenue"
-          value="₹24,500"
-          icon="💰"
-          trend="+8%"
-          trendUp
-        />
-        <StatCard
-          title="Active Buyers"
-          value="412"
-          icon="👥"
-          trend="-2%"
-          trendUp={false}
-        />
-        <StatCard
-          title="Pending Contracts"
-          value="15"
-          icon="📝"
-          trend="+3%"
-          trendUp
-        />
-      </div>
-
-      {/* Main Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 md:gap-6 mb-6 md:mb-8">
-        {/* Left Column */}
-        <div className="space-y-6">
+        {/**left section */}
+        <div className="grid grid-cols-2 gap-4">
+          <StatCard
+            title="Total Crops Sold"
+            value="1,230"
+            icon="🌾"
+            trend="+12%"
+            trendUp
+          />
+          <StatCard
+            title="Market Revenue"
+            value="₹24,500"
+            icon="💰"
+            trend="+8%"
+            trendUp
+          />
+          <StatCard
+            title="Active Buyers"
+            value="412"
+            icon="👥"
+            trend="-2%"
+            trendUp={false}
+          />
+          <StatCard
+            title="Pending Contracts"
+            value="15"
+            icon="📝"
+            trend="+3%"
+            trendUp
+          />
+        </div>
+
+        {/**right section */}
+        <div className="space-y-4">
           <WeatherForecast />
-          <ActiveListings />
-        </div>
-
-        {/* Middle Column */}
-        <div className="space-y-6">
           <AlertsPanel />
-          <CropAdvisory />
-          {/* <DemandAnalytics /> */}
-          {/* <PriceSuggestions /> */}
         </div>
-
-        {/* Right Column */}
-        {/* <div className="space-y-6"></div> */}
       </div>
-
-      <MarketTrends />
+      <CurrentMonthHighlights/>
+      <TrendingCrops />
     </main>
   );
 };
