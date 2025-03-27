@@ -19,6 +19,11 @@ import MyOrders from "./Component/MyOrders/MyOrders";
 import Contracts from "./Component/MyContracts/MyContracts";
 import Payments from "./Component/Payments/Payments";
 import UserProfile from "./Component/UserProfile/UserProfile";
+import Index2 from "./Component/MarketTrends/Pages/Index";
+import Trends from "./Component/MarketTrends/Pages/Trends";
+import Market from "./Component/MarketTrends/Pages/Market";
+import Insights from "./Component/MarketTrends/Pages/Insights";
+import CropDetail from "./Component/MarketTrends/Pages/CropDetail";
 
 function App() {
   const PrivateRoute = ({ children }) => {
@@ -62,6 +67,11 @@ function App() {
                       <Route path="/my-contracts" element={<Contracts />} />
                       <Route path="/my-payments" element={<Payments />} />
                       <Route path="/profile" element={<UserProfile />} />
+                      <Route path="/market-trends" element={<Index2 />} />
+                      <Route path="/trends" element={<Trends />} />
+                      <Route path="/market" element={<Market />} />
+                      <Route path="/insights" element={<Insights />} />
+                      <Route path="/crop/market/:cropId" element={<CropDetail />} />
                     </Routes>
                   </main>
                 </div>
