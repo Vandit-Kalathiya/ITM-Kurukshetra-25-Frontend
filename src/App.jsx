@@ -11,13 +11,14 @@ import Navbar from "./Component/Navbar/Navbar";
 import Sidebar from "./Component/Dashboard/Sidebar";
 import Dashboard from "./Component/Dashboard/Dashboard";
 import CropListingPage from "./Component/MarketPlace/CropListingPage";
-import {CropDetailPage} from "./Component/MarketPlace/CropDetailPage";
+import { CropDetailPage } from "./Component/MarketPlace/CropDetailPage";
 import WeatherDashboard from "./Component/Weather/WeatherDashboard";
 import ColdStoragePage from "./Component/ColdStorage/ColdStorage";
 import MyListing from "./Component/MyProducts/MyListing";
 import MyOrders from "./Component/MyOrders/MyOrders";
 import Contracts from "./Component/MyContracts/MyContracts";
 import Payments from "./Component/Payments/Payments";
+import UserProfile from "./Component/UserProfile/UserProfile";
 
 function App() {
   const PrivateRoute = ({ children }) => {
@@ -56,10 +57,11 @@ function App() {
                         path="/cold-storage"
                         element={<ColdStoragePage />}
                       />
-                      <Route path="/my-listing" element={ <MyListing /> } />
+                      <Route path="/my-listing" element={<MyListing />} />
                       <Route path="/my-orders" element={<MyOrders />} />
                       <Route path="/my-contracts" element={<Contracts />} />
                       <Route path="/my-payments" element={<Payments />} />
+                      <Route path="/profile" element={<UserProfile />} />
                     </Routes>
                   </main>
                 </div>
